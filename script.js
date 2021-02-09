@@ -29,6 +29,7 @@ const getUser = () => {
   if (input.value === "") {
     repositoriesButton.style.display = "none";
     followersButton.style.display = "none";
+    
     loading.style.display = "none";
     user.innerText = "";
   } else {
