@@ -1,0 +1,106 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+}
+a {
+  font-size: 25px;
+  line-height: 35px;
+  width: 100%;
+  color: black;
+  overflow: hidden;
+  text-decoration: none;
+  border-bottom: 2px solid #13918c;
+  cursor: pointer;
+}
+a:hover {
+  letter-spacing: 1.05px;
+}
+#userLink {
+  width: auto;
+}
+input {
+  font-size: 30px;
+  margin: 10px;
+  width: 300px;
+}
+#repoButton,
+#followersButton {
+  display: none;
+  margin: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+#repo,
+#followers {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  border: 3px solid paleturquoise;
+  margin: 100px 10px 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#repo::before {
+  position: absolute;
+  top: -70px;
+  left: 30px;
+  font-size: 40px;
+  content: "Repositories";
+}
+
+#followers::before {
+  position: absolute;
+  top: -70px;
+  left: 30px;
+  font-size: 40px;
+  content: "Followers";
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.buttonWeapper {
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background-color: #000;
+  color: white;
+  font-size: 40px;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 750px) {
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  #repo,
+  #followers {
+    width: 100%;
+    min-width: calc(50% - 15px);
+  }
+
+  #followers a {
+    text-align: right;
+  }
+
+  #followers::before {
+    left: auto;
+    right: 30px;
+  }
+}
