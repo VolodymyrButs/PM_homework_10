@@ -7,6 +7,8 @@ const repositoriesButton = document.querySelector("#repoButton");
 const followersButton = document.querySelector("#followersButton");
 const loading = document.querySelector(".loading");
 
+//---------------------------------
+
 const github = axios.create({
   baseURL: "https://api.github.com/",
 });
@@ -21,6 +23,8 @@ function debounce(cb, duration) {
     }, duration);
   };
 }
+
+//--------------------------------- USER
 
 const getUser = () => {
   loading.style.display = "flex";
@@ -73,6 +77,8 @@ const getUser = () => {
 
 input.addEventListener("input", debounce(getUser, 1000));
 
+//--------------------------------- REPO
+
 const handleRepoClick = () => {
   loading.style.display = "flex";
   if (repositories.style.display === "flex") {
@@ -105,6 +111,12 @@ const handleRepoClick = () => {
       });
   }
 };
+
+repositoriesButton.onclick = function () {
+  handleRepoClick();
+};
+
+//--------------------------------- FOLLOWERS
 
 const handleFolowClick = () => {
   loading.style.display = "flex";
@@ -148,9 +160,6 @@ const handleFolowClick = () => {
   }
 };
 
-repositoriesButton.onclick = function () {
-  handleRepoClick();
-};
 followersButton.onclick = function () {
   handleFolowClick();
 };
