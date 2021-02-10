@@ -1,5 +1,5 @@
 const input = document.querySelector("input");
-const user = document.querySelector("a");
+const userBlock = document.querySelector("#userBlock");
 const noUser = document.querySelector("#noUser");
 const repositories = document.querySelector("#repo");
 const followers = document.querySelector("#followers");
@@ -35,8 +35,24 @@ const getUser = () => {
     github
       .get(`/users/${input.value}`)
       .then((response) => {
-        user.setAttribute("href", response.data.html_url);
-        user.innerText = `Visit GitHub page of user "${response.data.login}"`;
+        userBlock.innerHTML = "";
+        let userLink = document.createElement("a");
+        let userButton = document.createElement("button");
+        let user = document.createElement("p");
+        userLink.setAttribute("target", "blank");
+        userLink.setAttribute("style", "border-bottom:none;width:72px;");
+        let img = document.createElement("img");
+        img.setAttribute("style", "width:67px; height:67px;");
+        img.setAttribute("src", response.data.avatar_url);
+        userLink.appendChild(userButton);
+        userLink.setAttribute("href", response.data.html_url);
+        userButton.setAttribute("style", "padding:5px;");
+        userButton.innerText = "GO TO USER PAGE";
+        user.innerText = `Name: "${response.data.login}"`;
+        user.setAttribute("id", "userName");
+        userBlock.appendChild(img);
+        userBlock.appendChild(user);
+        userBlock.appendChild(userLink);
         repositoriesButton.style.display = "inline";
         repositoriesButton.innerText = "Show repositories";
         followersButton.style.display = "inline";
@@ -46,8 +62,8 @@ const getUser = () => {
       })
       .catch((err) => {
         console.log(err);
-        noUser.innerText = "User with this name not exist";
-        user.innerText = "";
+        noUser.innerText = "User with this name doesn't exist";
+        userBlock.innerHTML = "";
         repositoriesButton.style.display = "none";
         followersButton.style.display = "none";
         loading.style.display = "none";
@@ -69,8 +85,10 @@ const handleRepoClick = () => {
       .get(`/users/${input.value}/repos`)
       .then((response) => response.data)
       .then((data) => {
-        data.length !== 0 && (repositories.style.display = "flex");
-        data.length === 0 && alert(`No publick repo in user ${input.value}`);
+        repositories.style.display = "flex";
+        let noItem = document.createElement("p");
+        noItem.innerText = `No public repo in user ${input.value}`;
+        data.length === 0 && repositories.appendChild(noItem);
         repositoriesButton.innerText = "Hide repositories";
         data.map((repo) => {
           let item = document.createElement("a");
@@ -100,15 +118,26 @@ const handleFolowClick = () => {
       .get(`/users/${input.value}/followers`)
       .then((response) => response.data)
       .then((data) => {
-        data.length !== 0 && (followers.style.display = "flex");
-        data.length === 0 && alert(`No followers in user ${input.value}`);
+        followers.style.display = "flex";
+        let noItem = document.createElement("p");
+        noItem.innerText = `No followers in user ${input.value}`;
+        data.length === 0 && followers.appendChild(noItem);
         followersButton.innerText = "Hide followers";
-        data.map((repo) => {
+        data.map((folower) => {
           let item = document.createElement("a");
-          item.setAttribute("href", repo.html_url);
+          let img = document.createElement("img");
+          img.style.width = "67px";
+          console.log(img, folower.avatar_url);
+          let wrapper = document.createElement("div");
+          wrapper.style.display = "flex";
+          img.setAttribute("src", folower.avatar_url);
+          item.setAttribute("href", folower.html_url);
           item.setAttribute("target", "blank");
-          item.innerText = repo.login;
-          followers.appendChild(item);
+          item.style.alignSelf = "flex-end";
+          item.innerText = folower.login;
+          wrapper.appendChild(item);
+          wrapper.appendChild(img);
+          followers.appendChild(wrapper);
         });
         loading.style.display = "none";
       })
