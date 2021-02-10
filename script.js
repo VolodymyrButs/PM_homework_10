@@ -34,7 +34,7 @@ const getUser = () => {
     repositoriesButton.style.display = "none";
     followersButton.style.display = "none";
     loading.style.display = "none";
-    user.innerText = "";
+    userBlock.innerHTML = "";
   } else {
     github
       .get(`/users/${input.value}`)
