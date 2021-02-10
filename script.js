@@ -142,6 +142,7 @@ const handleFolowClick = () => {
           let item = document.createElement("a");
           let img = document.createElement("img");
           img.style.width = "67px";
+          img.style.height = "67px";
           console.log(img, folower.avatar_url);
           let wrapper = document.createElement("div");
           wrapper.style.display = "flex";
