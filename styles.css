@@ -6,7 +6,9 @@ body {
   min-height: 100vh;
   margin: 0;
 }
-
+button {
+  -webkit-appearance: none;
+}
 a {
   display: inline-block;
   font-size: 25px;
@@ -108,7 +110,6 @@ input {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  -webkit-appearance: none;
 }
 
 #userBlock {
