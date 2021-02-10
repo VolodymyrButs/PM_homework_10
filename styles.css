@@ -35,7 +35,7 @@ input {
   font-size: 30px;
   padding: 5px;
   margin: 10px;
-  width: 300px;
+  width: 290px;
 }
 
 .inputWrapp {
@@ -61,6 +61,7 @@ input {
 }
 #repoButton,
 #followersButton {
+  padding: 5px 10px;
   display: none;
   margin: 10px;
   font-size: 24px;
@@ -133,6 +134,10 @@ input {
   .wrapper {
     display: flex;
     justify-content: space-between;
+  }
+  .inputWrapp {
+    flex-direction: row;
+    height: 80px;
   }
   #repo,
   #followers {
