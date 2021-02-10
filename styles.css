@@ -33,7 +33,7 @@ a:hover {
 
 input {
   font-size: 30px;
-  padding: 5px;
+  padding: 8px;
   margin: 10px;
   width: 290px;
 }
@@ -66,6 +66,7 @@ input {
 #followersButton {
   padding: 5px 10px;
   display: none;
+  height: 70px;
   margin: 10px;
   font-size: 24px;
   cursor: pointer;
@@ -153,7 +154,10 @@ input {
     width: 100%;
     min-width: calc(50% - 20px);
   }
-
+  #repoButton,
+  #followersButton {
+    height: 50px;
+  }
   #userBlock {
     width: 500px;
   }

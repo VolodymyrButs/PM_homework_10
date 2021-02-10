@@ -50,9 +50,12 @@ const getUser = () => {
         img.setAttribute("src", response.data.avatar_url);
         userLink.appendChild(userButton);
         userLink.setAttribute("href", response.data.html_url);
-        userButton.setAttribute("style", "padding:5px;");
+        userButton.setAttribute(
+          "style",
+          "padding:5px;width:58px; height:58px;"
+        );
         userButton.innerText = "GO TO USER PAGE";
-        user.innerText = `Name: "${response.data.login}"`;
+        user.innerText = `Name: ${response.data.login}`;
         user.setAttribute("id", "userName");
         userBlock.appendChild(img);
         userBlock.appendChild(user);
